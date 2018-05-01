@@ -17,9 +17,7 @@ The `erandig/gcontacts3` package contains operations to get Google Contacts user
 ## Sample
 First, import the `erandig/gcontacts3` package into the Ballerina project.
 ```ballerina
-
 import erandig/gcontacts3;
-
 ```
 Instantiate the connector by giving authentication details in the HTTP client config, which has built-in support for 
 OAuth 2.0. Google Contacts uses OAuth 2.0 to authenticate and authorize requests. The Google Contacts connector can be 
@@ -40,7 +38,6 @@ access token and refresh token).
 
 You can now enter the credentials in the HTTP client config. 
 ```ballerina
-
 endpoint Client gContactsEP {
     clientConfig:{
         auth:{
@@ -51,7 +48,6 @@ endpoint Client gContactsEP {
         }
     }
 };
-
 ```
 The `getAllContacts()` lists all the contacts for a given email. As the parameter need to send the relevant 
 User Email address.
