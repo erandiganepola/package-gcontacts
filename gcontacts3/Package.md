@@ -5,17 +5,14 @@ Connects to Google Contacts from Ballerina.
 The Google Contacts API allows client applications to view and update a user's contacts. 
 It handles OAuth 2.0 authentication. 
 
-The `wso2/gmail` package contains operations to read, search, trash, untrash, and delete mail threads in Gmail.
-
 **Operations**
 
-The `erandig/google-contacts` package contains operations to get Google Contacts user profile details.
+The `erandig/gcontacts3` package contains operations to get Google Contacts user profile details.
 
 ## Compatibility
-|                    |    Version     |  
-| :-----------------:|:--------------:| 
-| Ballerina Language | 0.970.0    |
-|     Google Contacts API      |    v3         |  
+|     Ballerina Language Version |    API Version     |  
+| :-----------------:|:--------------:|
+|0.970.0 | v3 |
 
 ## Sample
 First, import the `erandig/gcontacts3` package into the Ballerina project.
