@@ -1,6 +1,6 @@
 // Ballerina config keys
 documentation {Holds the value for oauth scheme. }
-@final string OAUTH = "oauth";
+@final string OAUTH = "OAuth2";
 
 documentation { Constant field 'ENDPOINT'. Holds the value for Salesforce endpoint }
 @readonly public string BASE_URL = "https://www.google.com";
@@ -18,11 +18,14 @@ documentation { Constant field 'REFRESH_TOKEN'. Holds the value for the refresh 
 @readonly public string REFRESH_TOKEN = "REFRESH_TOKEN";
 
 documentation { Constant field 'REFRESH_TOKEN_ENDPOINT'. Holds the value for Salesforce refresh token endpoint}
-@final string REFRESH_TOKEN_EP = "https://www.googleapis.com/oauth2/v3/token";
+@final string REFRESH_TOKEN_EP = "https://www.googleapis.com/oauth2/v4/token";
 
 //==========================================================================================================//
-documentation { Constant field 'API_BASE_PATH'. Holds the value for the Google Contacts API base path/URL}
-@final public string API_BASE_PATH = "/m8/feeds/contacts/";
+documentation { Constant field 'CONTACTS_API_BASE_PATH'. Holds the value for the Google Contacts contact API base path/URL}
+@final public string CONTACTS_API_BASE_PATH = "/m8/feeds/contacts/";
+
+documentation { Constant field 'GROUPS_API_BASE_PATH'. Holds the value for the Google Contacts group API base path/URL}
+@final public string GROUPS_API_BASE_PATH = "/m8/feeds/groups/";
 
 documentation { Constant field 'FULL_SUFFIX'. Holds the value of "/ful" in path/URL}
 @final public string FULL_SUFFIX = "/full";
