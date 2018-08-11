@@ -7,8 +7,8 @@ type Entry record {
 };
 
 type EntryGroup record {
-    ID id = {};
-    Title title = {};
+    string id = "";
+    string title = "";
 };
 
 type Contact record {
@@ -44,7 +44,7 @@ endpoint Client gContactsEP {
 function testGetAllContacts() {
     string userEmail = "default";
 
-    log:printInfo("testGetAllContacts()");
+    log:printInfo("Test Get All Contacts.");
     var response = gContactsEP -> getAllContacts(userEmail);
 
     match response {
@@ -102,7 +102,7 @@ function testAddContact() {
   </gd:structuredPostalAddress>
 </atom:entry>`;
 
-    log:printInfo("testAddContact");
+    log:printInfo("Test Add Contact.");
     var response = gContactsEP -> addContact(userEmail, contactXML);
 
     match response {
@@ -126,7 +126,7 @@ function testGetContactById() {
     string[] splitedId = id.split("/");
     string contactId = splitedId[splitedId.count() - 1];
 
-    log:printInfo("testGetContactById()");
+    log:printInfo("Test Get Contact By Id.");
     var response = gContactsEP -> getContactById(userEmail, contactId);
 
     match response {
@@ -148,7 +148,7 @@ function testDeleteContactById() {
     string[] splitedId = id.split("/");
     string contactId = splitedId[splitedId.count() - 1];
 
-    log:printInfo("testDeleteContactById()");
+    log:printInfo("Test Delete Contact By Id.");
     var response = gContactsEP -> deleteContactById(userEmail, contactId);
 
     match response {
@@ -167,7 +167,7 @@ function testDeleteContactById() {
 function testGetAllGroups() {
     string userEmail = "default";
 
-    log:printInfo("testGetAllGroups()");
+    log:printInfo("Test Get All Groups.");
     var response = gContactsEP -> getAllGroups(userEmail);
 
     match response {
@@ -185,22 +185,19 @@ function testGetAllGroups() {
 }
 function testAddGroup() {
     string userEmail = "default";
-    log:printInfo("testAddGroup()");
+    log:printInfo("Test Add Group.");
 
     xml groupDetails = xml`<entry xmlns="http://www.w3.org/2005/Atom" xmlns:gd="http://schemas.google.com/g/2005">
     <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/g/2008#group"/>
     <title>Salsa class members</title>
-    <gd:extendedProperty name="more info">
-        <description>A group that gathers salsa members.</description>
-    </gd:extendedProperty>
     </entry>`;
 
     var response = gContactsEP -> addGroup(userEmail, groupDetails);
 
     match response {
         xml xmlRes => {
-            json s = xmlRes.toJSON({});
-            groupData = check <Groups> s;
+            json jsonRes = xmlRes.toJSON({});
+            groupData = check <Groups>jsonRes;
             test:assertNotEquals(xmlRes, null, msg = "Found null xml response!");
         }
         error err => {
@@ -214,12 +211,11 @@ function testAddGroup() {
 }
 function testGetGroupById() {
     string userEmail = "default";
-    io:println(groupData);
-    string id = groupData.entry.id.^"#text";
+    string id = groupData.entry.id;
     string[] splitedId = id.split("/");
     string groupId = splitedId[splitedId.count() - 1];
 
-    log:printInfo("testGetGorupById():"+groupId);
+    log:printInfo("Test Get Gorup By Id.");
     var response = gContactsEP -> getGroupById(userEmail, groupId);
 
     match response {
@@ -237,7 +233,7 @@ function testGetGroupById() {
 }
 function testDeleteGroupById() {
     string userEmail = "default";
-    string id = groupData.entry.id.^"#text";
+    string id = groupData.entry.id;
     string[] splitedId = id.split("/");
     string groupId = splitedId[splitedId.count() - 1];
 
