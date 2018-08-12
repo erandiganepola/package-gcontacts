@@ -8,23 +8,23 @@ documentation{
     F{{gcontactsConnector}} Google Contacts connector
 }
 public type Client object {
-    public {
-        GContactsConfiguration gcontactsConfig;
-        GContactsConnector gcontactsConnector;
-    }
+    
+    public GContactsConfiguration gcontactsConfig;
+    public GContactsConnector gcontactsConnector;
 
     documentation{
         Gets called when the Google Contacts endpoint is beign initialized.
 
-        P{{gcontactsConfig}} Google Contacts connector configuration
+        P{{gcontactsConfiguration}} Google Contacts connector configuration
     }
-    public function init(GContactsConfiguration gcontactsConfig) {
+    public function init(GContactsConfiguration gcontactsConfiguration) {
+        gcontactsConfig = gcontactsConfiguration;
         gcontactsConfig.clientConfig.url = BASE_URL;
         match gcontactsConfig.clientConfig.auth {
             () => {}
             http:AuthConfig authConfig => {
                 authConfig.refreshUrl = REFRESH_TOKEN_EP;
-                authConfig.scheme = OAUTH;
+                authConfig.scheme = "OAuth2";
             }
         }
         self.gcontactsConnector = new;
@@ -44,6 +44,6 @@ documentation{
 
     F{{clientConfig}} The HTTP Client endpoint configuration
 }
-public type GContactsConfiguration {
+public type GContactsConfiguration record {
     http:ClientEndpointConfig clientConfig;
 };
